@@ -1,4 +1,4 @@
-const API_KEY: string = process.env.REACT_APP_TMDB_API_KEY;
+const API_KEY: string | undefined = process.env.REACT_APP_TMDB_API_KEY;
 
 interface Requests {
 	fetchTrending: string;
