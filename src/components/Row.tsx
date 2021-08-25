@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import instance from "../axios";
-import "./Row.scss"
+import "../stylesheets/Row.scss";
 
 type Props = {
 	title: string;
 	fetchUrl: string;
-	isLargeRow: boolean;
+	isLargeRow?: boolean;
 };
 
 type Movie = {
@@ -17,7 +17,7 @@ type Movie = {
 	backdrop_path: string;
 }
 
-export const Row = ({title, fetchUrl, isLargeRow = false}: Props) => {
+export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
 	const [movies, setmovies] = useState<Movie[]>([]);
 
 	const baseUrl: string = "https://image.tmdb.org/t/p/original";
