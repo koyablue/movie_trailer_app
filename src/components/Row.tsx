@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import instance from "../axios";
+import axiosInstance from "../axios";
+import apiConfig from "../config/api";
 import "../stylesheets/Row.scss";
 
 type Props = {
@@ -20,18 +21,16 @@ type Movie = {
 export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
 	const [movies, setmovies] = useState<Movie[]>([]);
 
-	const baseUrl: string = "https://image.tmdb.org/t/p/original";
-
 	useEffect(() => {
 		async function fetchData() {
-			const request = await instance.get(fetchUrl);
+			const request = await axiosInstance.get(fetchUrl);
 			setmovies(request.data.results);
 			return request;
 		};
 		fetchData();
 	}, [fetchUrl]);
 
-	console.log(movies)
+	// console.log(movies);
 
 	return (
 		<div className="Row">
@@ -42,7 +41,7 @@ export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
 					<img
 						key={movie.id}
 						className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
-						src={`${baseUrl}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+						src={`${apiConfig.IMG_BASE_PATH}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
 						alt={movie.name}
 					/>
 				))}
