@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../axios";
-// import apiConfig from "../config/api";
+import apiConfig from "../config/api";
 import { requests } from "../request";
+import "../stylesheets/Banner.scss";
 
 type movieProps = {
 	title?: string;
@@ -15,20 +16,44 @@ export const Banner = ({title, name, original_name, backdrop_path, overview}: mo
 	const [movie, setMovie] = useState<movieProps>({});
 
 	useEffect(() => {
-		async function fetchData() {
+		const fetchData = async () => {
 			const request = await axiosInstance.get(`${requests.fetchNetflixOriginals}`);
 			const movies = request.data.results;
-			// console.log('useEffect fetch data: ', request.data.results);
 
 			setMovie(movies[Math.floor(Math.random() * movies.length)]);
 			return request;
-		}
+		};
 		fetchData();
 	}, []);
 
-	console.log(movie);
+	const truncate = (str: string | undefined, limit: number): string | undefined => {
+		if (str !== undefined) {
+			return str.length > limit ? str.substr(0, limit - 1) + "..." : str;
+		}
+	};
 
 	return (
-		<div></div>
+		<header
+			className="banner"
+			style={
+				{
+					backgroundSize: "cover",
+					backgroundImage: `url("${apiConfig.IMG_BASE_PATH}/${movie.backdrop_path}")`,
+					backgroundPosition: "center center",
+				}
+			}
+		>
+			<div className="banner__contents">
+				<h1 className="banner__contents__title">
+					{movie.title || movie.name || movie.original_name}
+				</h1>
+				<div className="banner__contents__buttons">
+					<button className="banner__contents__buttons-button">Play</button>
+					<button className="banner__contents__buttons-button">My List</button>
+				</div>
+				<h1 className="banner__contents__description">{truncate(movie.overview, 150)}</h1>
+			</div>
+			<div className="banner__fade-bottom"></div>
+		</header>
 	);
 }
