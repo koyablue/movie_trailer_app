@@ -38,7 +38,7 @@ export const Banner = ({title, name, original_name, backdrop_path, overview}: mo
 			style={
 				{
 					backgroundSize: "cover",
-					backgroundImage: `url("${apiConfig.IMG_BASE_PATH}/${movie.backdrop_path}")`,
+					backgroundImage: `url("${apiConfig.img_base_path}/${movie.backdrop_path}")`,
 					backgroundPosition: "center center",
 				}
 			}
