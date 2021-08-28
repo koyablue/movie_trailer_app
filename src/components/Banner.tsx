@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../axios";
 import apiConfig from "../config/api";
-import { requests } from "../request";
+import { endpoints } from "../api_endpoints";
 import "../stylesheets/Banner.scss";
 
 type movieProps = {
@@ -17,11 +17,11 @@ export const Banner = ({title, name, original_name, backdrop_path, overview}: mo
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const request = await axiosInstance.get(`${requests.fetchNetflixOriginals}`);
-			const movies = request.data.results;
+			const res = await axiosInstance.get(`${endpoints.fetchTrending}`);
+			const trendingMoviesFromPage1 = res.data.results;
 
-			setMovie(movies[Math.floor(Math.random() * movies.length)]);
-			return request;
+			setMovie(trendingMoviesFromPage1[Math.floor(Math.random() * trendingMoviesFromPage1.length)]);
+			return res;
 		};
 		fetchData();
 	}, []);
