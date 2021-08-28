@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../stylesheets/Nav.scss";
+import values from "../config/values";
 
 type Props = {
 	className?: string;
@@ -21,16 +22,16 @@ export const Nav = ({className}: Props) => {
 		};
 	}, []);
 
-	// return (
-	// 	<div className={`nav ${show && "nav--black"}`}>
-	// 		<img className="nav__logo--netflix" src={`${process.env.PUBLIC_URL}/img/Netflix_Logo_RGB.png`} alt="Netflix Logo" />
-	// 		<img className="nav__logo--github" src={`${process.env.PUBLIC_URL}/img/GitHub-Mark-Light-64px.png`} alt="GitHub Logo" />
-	// 	</div>
-	// );
 	return (
-		<div className={`Nav ${show && "Nav-black"}`}>
-			<img className="Nav-logo" src={`${process.env.PUBLIC_URL}/img/Netflix_Logo_RGB.png`} alt="Netflix Logo" />
-			<img className="Nav-avater" src={`${process.env.PUBLIC_URL}/img/GitHub-Mark-Light-64px.png`} alt="GitHub Logo" />
+		<div className={`navbar ${show && "navbar--black"}`}>
+			<img className="navbar__logo" src={`${process.env.PUBLIC_URL}/img/Netflix_Logo_RGB.png`} alt="Netflix Logo" />
+			<a href={`${values.github_repo_url}`}>
+			<img
+				className="navbar__avater"
+				src={`${process.env.PUBLIC_URL}/img/GitHub-Mark-Light-64px.png`}
+				alt="GitHub Logo"
+			/>
+			</a>
 		</div>
 	);
 };
