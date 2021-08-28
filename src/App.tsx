@@ -32,7 +32,7 @@ const App = () => {
 			isLargeRow
 			/> */}
 			{movieGenres.map(idAndName =>
-				<Row title={idAndName.name} fetchUrl={`${endpoints.fetchMoviesByGenreId}${idAndName.id}`} />
+				<Row key={idAndName.id} title={idAndName.name} fetchUrl={`${endpoints.fetchMoviesByGenreId}${idAndName.id}`} />
 			)}
 
 		</div>
