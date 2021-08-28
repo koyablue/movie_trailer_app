@@ -19,15 +19,15 @@ type Movie = {
 }
 
 export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
-	const [movies, setmovies] = useState<Movie[]>([]);
+	const [movies, setMovies] = useState<Movie[]>([]);
 
 	useEffect(() => {
-		async function fetchData() {
+		const fetchMovieData = async () => {
 			const request = await axiosInstance.get(fetchUrl);
-			setmovies(request.data.results);
-			return request;
+			setMovies(request.data.results);
+			// return request;
 		};
-		fetchData();
+		fetchMovieData();
 	}, [fetchUrl]);
 
 	// console.log(movies);
@@ -41,7 +41,7 @@ export const Row = ({title, fetchUrl, isLargeRow}: Props) => {
 					<img
 						key={movie.id}
 						className={`Row-poster ${isLargeRow && "Row-poster-large"}`}
-						src={`${apiConfig.IMG_BASE_PATH}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
+						src={`${apiConfig.img_base_path}${isLargeRow ? movie.poster_path : movie.backdrop_path}`}
 						alt={movie.name}
 					/>
 				))}
