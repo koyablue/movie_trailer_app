@@ -12,7 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          yarn install
+          npm install -g yarn
+          yarn
           yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
