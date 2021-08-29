@@ -14,6 +14,7 @@ jobs:
       - run: |
           npm install -g yarn
           yarn
+          yarn add eslint-config-react-app
           yarn build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
