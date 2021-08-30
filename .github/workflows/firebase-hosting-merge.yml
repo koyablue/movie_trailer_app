@@ -15,12 +15,12 @@ jobs:
         env:
           API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
-          cd /home/runner/work/movie_trailer_app
+          cd /home/runner/work/movie_trailer_app/movie_trailer_app
           ls
           touch .env
           cat .env << "EOF"
           REACT_APP_TMDB_BASE_URL="https://image.tmdb.org/t/p/original"
-          REACT_APP_TMDB_API_KEY=${API_KEY}
+          REACT_APP_TMDB_API_KEY="${API_KEY}"
           REACT_APP_GIT_REMOTE_URL="https://github.com/koyablue/movie_database"
           EOF
       - name: build app
