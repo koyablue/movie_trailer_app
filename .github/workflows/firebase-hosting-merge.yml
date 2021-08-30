@@ -18,7 +18,7 @@ jobs:
       - name: build app
         run: |
           touch .env
-          .env<< EOF > .env
+          cat <<EOF > .env
           REACT_APP_TMDB_BASE_URL="https://image.tmdb.org/t/p/original"
           REACT_APP_TMDB_API_KEY="${{ secrets.TMDB_API_KEY }}"
           REACT_APP_GIT_REMOTE_URL: "https://github.com/koyablue/movie_database"
