@@ -11,7 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
+      - name: prepare env file
+        run: |
+          cat .env << "EOF"
+          REACT_APP_TMDB_BASE_URL="https://image.tmdb.org/t/p/original"
+          REACT_APP_TMDB_API_KEY='"${{ secrets.TMDB_API_KEY }}"'
+          REACT_APP_GIT_REMOTE_URL="https://github.com/koyablue/movie_database"
+          EOF
+          cat.env
+      - name: build app
+        run: |
           npm install -g yarn
           yarn
           yarn add eslint-config-react-app
